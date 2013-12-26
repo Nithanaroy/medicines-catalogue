@@ -1,0 +1,295 @@
+﻿<phone:PhoneApplicationPage xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                            xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:views="clr-namespace:MedicinesCatalogue.Views"
+                            xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                            xmlns:Lib="clr-namespace:MedicinesCatalogue.Lib"
+                            xmlns:Convertors="clr-namespace:MedicinesCatalogue.Convertors"
+                            x:Class="MedicinesCatalogue.DetailsPage"
+                            mc:Ignorable="d"
+                            d:DesignWidth="480"
+                            d:DesignHeight="696"
+                            SupportedOrientations="Portrait"
+                            Orientation="Portrait"
+                            shell:SystemTray.IsVisible="True">
+
+    <phone:PhoneApplicationPage.Resources>
+        <Convertors:ListToString x:Key="ListToString" />
+        <Convertors:BoolToCurrentlyUsingHelperText x:Key="BoolToCurrentlyUsingHelperText" />
+    </phone:PhoneApplicationPage.Resources>
+    <phone:PhoneApplicationPage.FontFamily>
+        <StaticResource ResourceKey="PhoneFontFamilyNormal" />
+    </phone:PhoneApplicationPage.FontFamily>
+    <phone:PhoneApplicationPage.FontSize>
+        <StaticResource ResourceKey="PhoneFontSizeNormal" />
+    </phone:PhoneApplicationPage.FontSize>
+    <phone:PhoneApplicationPage.Foreground>
+        <StaticResource ResourceKey="PhoneForegroundBrush" />
+    </phone:PhoneApplicationPage.Foreground>
+
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True"
+                              IsMenuEnabled="True">
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="home"
+                                              Click="HomeMenuItem_Click" />
+                <shell:ApplicationBarMenuItem Text="settings / options"
+                                              Click="SettingsMenuItem_Click" />
+                <shell:ApplicationBarMenuItem Text="about"
+                                              Click="AboutMenuItem_Click" />
+
+            </shell:ApplicationBar.MenuItems>
+            <shell:ApplicationBarIconButton IconUri="/Images/edit.png"
+                                            Text="edit"
+                                            Click="EditMenuButton_Click" />
+            <shell:ApplicationBarIconButton IconUri="/Images/delete.png"
+                                            Text="delete"
+                                            Click="DeleteMenuButton_Click" />
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel x:Name="TitlePanel"
+                    Grid.Row="0"
+                    Margin="12,17,0,28">
+            <TextBlock x:Name="PageTitle"
+                       Text="MY MEDICINES CATALOGUE"
+                       Style="{StaticResource PhoneTextNormalStyle}" />
+            <TextBlock x:Name="ListTitle"
+                       Text="{Binding Name}"
+                       Margin="9,-7,0,0"
+                       Style="{StaticResource PhoneTextTitle1Style}" />
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="1">
+            <StackPanel x:Name="MedicineDetailsStackPanel"
+                        HorizontalAlignment="Left"
+                        Margin="12,0,0,36"
+                        VerticalAlignment="Top"
+                        Width="456">
+
+                <StackPanel Orientation="Horizontal">
+                    <Image x:Name="MedicineImage"
+                           Height="150"
+                           Margin="12,0"
+                           Source="{Binding MedicineImage, FallbackValue=/Images/Default.jpg, TargetNullValue=/Images/Default.jpg}"
+                           HorizontalAlignment="Left"
+                           Tap="MedicineImage_Tap" />
+                    <StackPanel>
+                        <TextBlock x:Name="ViewTypeHeadingTextBlock"
+                                   Text="Basic View"
+                                   Style="{StaticResource PhoneTextNormalStyle}" />
+                        <toolkit:ToggleSwitch Checked="ViewSwitch_Checked"
+                                              Unchecked="ViewSwitch_Unchecked"
+                                              FontSize="24"
+                                              HorizontalAlignment="Left"
+                                              HorizontalContentAlignment="Left"
+                                              Content="" />
+                    </StackPanel>
+                </StackPanel>
+
+                <TextBlock x:Name="IsUsing"
+                           Margin="12,10,0,0"
+                           Text="{Binding IsUsing, Converter={StaticResource BoolToCurrentlyUsingHelperText}, FallbackValue=&lt;&lt; Error: Unable to retreive whether you are using this medicine or not &gt;&gt;, StringFormat=[\{0\}]}"
+                           TextWrapping="Wrap"
+                           Style="{StaticResource PhoneTextSmallStyle}" />
+
+                <TextBlock x:Name="ExpDateHeading"
+                           Margin="12,10,0,0"
+                           Text="Expiry Date"
+                           TextWrapping="Wrap"
+                           Style="{StaticResource PhoneTextNormalStyle}" />
+                <TextBlock x:Name="ExpDate"
+                           Text="{Binding ExpDate, FallbackValue=&lt;&lt; Error &gt;&gt;, StringFormat={StaticResource LongDateFormat}, TargetNullValue=----}"
+                           TextWrapping="Wrap"
+                           Style="{StaticResource PhoneTextSmallStyle}" />
+
+                <TextBlock x:Name="MfgDateHeading"
+                           Text="Manufactured Date"
+                           Margin="12,10,0,0"
+                           TextWrapping="Wrap"
+                           Style="{StaticResource PhoneTextNormalStyle}" />
+                <TextBlock x:Name="MfgDate"
+                           Text="{Binding MfgDate, FallbackValue=&lt;&lt; Error &gt;&gt;, StringFormat={StaticResource LongDateFormat}, TargetNullValue=-----}"
+                           TextWrapping="Wrap"
+                           Style="{StaticResource PhoneTextSmallStyle}" />
+
+                <TextBlock x:Name="CureForHeading"
+                           Margin="12,10,0,0"
+                           Text="Used to cure"
+                           TextWrapping="Wrap"
+                           Style="{StaticResource PhoneTextNormalStyle}" />
+                <TextBlock x:Name="CureFor"
+                           Text="{Binding CureFor, FallbackValue=&lt;&lt; Error &gt;&gt;, TargetNullValue=----}"
+                           TextWrapping="Wrap"
+                           Style="{StaticResource PhoneTextSmallStyle}" />
+
+                <TextBlock x:Name="DosageHeading"
+                           Margin="12,10,0,0"
+                           Text="Dosage"
+                           TextWrapping="Wrap"
+                           Style="{StaticResource PhoneTextNormalStyle}" />
+                <StackPanel x:Name="Dosage"
+                            Orientation="Horizontal">
+                    <TextBlock Text="{Binding Dosage, FallbackValue=&lt;&lt; Error &gt;&gt;, TargetNullValue=----}"
+                               TextWrapping="Wrap"
+                               Style="{StaticResource PhoneTextSmallStyle}"
+                               Margin="12,0,0,0" />
+                    <TextBlock Text="{Binding DosageType, FallbackValue=&lt;&lt; Error &gt;&gt;}"
+                               TextWrapping="Wrap"
+                               Style="{StaticResource PhoneTextSmallStyle}" />
+                </StackPanel>
+
+                <TextBlock x:Name="AlarmsHeading"
+                           Margin="12,10,0,0"
+                           Text="Alarms"
+                           TextWrapping="Wrap"
+                           Style="{StaticResource PhoneTextNormalStyle}" />
+                <TextBlock x:Name="AlarmsEmpty"
+                           Text="No alarms attached"
+                           TextWrapping="Wrap"
+                           Visibility="Collapsed"
+                           Style="{StaticResource PhoneTextSmallStyle}" />
+                <ListBox Name="AlarmsListBox"
+                         Margin="12,0,12,0"
+                         ItemsSource="{Binding Reminders}">
+                    <ListBox.Resources>
+                        <Style TargetType="TextBlock"
+                               x:Key="ReminderTextStyle">
+                            <Setter Property="Foreground"
+                                    Value="{StaticResource PhoneSubtleBrush}" />
+                            <Setter Property="FontSize"
+                                    Value="18.667" />
+                            <Setter Property="FontFamily"
+                                    Value="Segoe WP" />
+                        </Style>
+                    </ListBox.Resources>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="0,0,0,12">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="At "
+                                               Style="{StaticResource ReminderTextStyle}" />
+                                    <TextBlock Text="{Binding ExpirationTime, StringFormat='h:mm tt'}"
+                                               Style="{StaticResource ReminderTextStyle}" />
+
+                                    <TextBlock Text=". Repeatition - "
+                                               Style="{StaticResource ReminderTextStyle}" />
+                                    <TextBlock Text="{Binding RecurrenceType}"
+                                               Style="{StaticResource ReminderTextStyle}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="From "
+                                               Style="{StaticResource ReminderTextStyle}" />
+                                    <TextBlock Text="{Binding BeginTime, StringFormat=dd-MMM-y}"
+                                               Style="{StaticResource ReminderTextStyle}" />
+
+                                    <TextBlock Text=", to "
+                                               Style="{StaticResource ReminderTextStyle}" />
+                                    <TextBlock Text="{Binding ExpirationTime, StringFormat=dd-MMM-y}"
+                                               Style="{StaticResource ReminderTextStyle}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+                <TextBlock x:Name="AgeGroupHeading"
+                           Margin="12,10,0,0"
+                           Text="Age Group"
+                           TextWrapping="Wrap"
+                           Style="{StaticResource PhoneTextNormalStyle}" />
+                <TextBlock x:Name="AgeGroup"
+                           Text="{Binding AgeGroup, FallbackValue=&lt;&lt; Error &gt;&gt;, TargetNullValue=----}"
+                           TextWrapping="Wrap"
+                           Style="{StaticResource PhoneTextSmallStyle}" />
+
+                <TextBlock x:Name="GroupsHeading"
+                           Margin="12,10,0,0"
+                           Text="Groups"
+                           TextWrapping="Wrap"
+                           Style="{StaticResource PhoneTextNormalStyle}" />
+                <TextBlock x:Name="Groups"
+                           Text="{Binding Groups, Converter={StaticResource ListToString}, FallbackValue=&lt;&lt; Error &gt;&gt;, TargetNullValue=----}"
+                           TextWrapping="Wrap"
+                           TextTrimming="WordEllipsis"
+                           Style="{StaticResource PhoneTextSmallStyle}"
+                           MaxHeight="72" />
+
+                <TextBlock x:Name="PriceHeading"
+                           Margin="12,10,0,0"
+                           Text="Price"
+                           TextWrapping="Wrap"
+                           Style="{StaticResource PhoneTextNormalStyle}" />
+                <TextBlock x:Name="Price"
+                           Text="{Binding Price, FallbackValue=&lt;&lt; Error &gt;&gt;, StringFormat=Rs \{0:0.00\}, TargetNullValue=----}"
+                           TextWrapping="Wrap"
+                           Style="{StaticResource PhoneTextSmallStyle}" />
+
+                <TextBlock x:Name="QuantityHeading"
+                           Margin="12,10,0,0"
+                           Text="Quantity Remaining"
+                           TextWrapping="Wrap"
+                           Style="{StaticResource PhoneTextNormalStyle}" />
+                <StackPanel x:Name="Quantity"
+                            Orientation="Horizontal">
+                    <TextBlock Text="{Binding Quantity, FallbackValue=&lt;&lt; Error &gt;&gt;, TargetNullValue=----}"
+                               TextWrapping="Wrap"
+                               Style="{StaticResource PhoneTextSmallStyle}"
+                               Margin="12,0,0,0" />
+                    <TextBlock Text="{Binding QuantityType, FallbackValue=&lt;&lt; Error &gt;&gt;}"
+                               TextWrapping="Wrap"
+                               Style="{StaticResource PhoneTextSmallStyle}" />
+                </StackPanel>
+
+                <TextBlock x:Name="AddressHeading"
+                           Margin="12,10,0,0"
+                           Text="Bought at address"
+                           TextWrapping="Wrap"
+                           Style="{StaticResource PhoneTextNormalStyle}" />
+                <TextBlock x:Name="Address"
+                           Text="{Binding BoughtAddress, FallbackValue=&lt;&lt; Error &gt;&gt;, TargetNullValue=----}"
+                           TextWrapping="Wrap"
+                           Style="{StaticResource PhoneTextSmallStyle}"
+                           Margin="12,0,12,12" />
+            </StackPanel>
+        </ScrollViewer>
+
+        <Grid x:Name="ImagePicker"
+              Grid.Row="0"
+              Grid.RowSpan="2"
+              Visibility="Collapsed"
+              Background="#7F000000">
+            <Image x:Name="image"
+                   Source="{Binding Source, ElementName=MedicineImage, FallbackValue=/Images/Default.jpg, TargetNullValue=/Images/Default.jpg}"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Margin="12,0" />
+            <Border Width="75"
+                    Height="60"
+                    Background="#FFF96262"
+                    CornerRadius="5"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Tap="CloseImagePreview_Tap"
+                    Margin="{Binding Margin, ElementName=image}">
+                <TextBlock Text="X"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           FontSize="40"
+                           FontWeight="Bold"
+                           Foreground="White" />
+            </Border>
+        </Grid>
+
+    </Grid>
+
+</phone:PhoneApplicationPage>

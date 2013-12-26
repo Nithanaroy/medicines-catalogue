@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Deployment xmlns="http://schemas.microsoft.com/windowsphone/2009/deployment" AppPlatformVersion="7.1">
+  <App xmlns="" ProductID="{e3feeee3-b683-4b26-acef-b2dcf1766709}" Title="Medicines Catalogue" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Nitin Pasumarthy" Description="Keep track of all your medicines, their expiry dates, costs, places available and many more details. Captures pictures of medicines for easy identification" Publisher="Nitin">
+    <IconPath IsRelative="true" IsResource="false">Images/ApplicationIcon.png</IconPath>
+    <Capabilities>
+      <Capability Name="ID_CAP_ISV_CAMERA" />
+    </Capabilities>
+    <Tasks>
+      <DefaultTask Name="_default" NavigationPage="/Views/MainPage.xaml" />
+    </Tasks>
+    <Tokens>
+      <PrimaryToken TokenID="MedicinesCatalogueToken" TaskName="_default">
+        <TemplateType5>
+          <BackgroundImageURI IsRelative="true" IsResource="false">Images\Background.png</BackgroundImageURI>
+          <Count>0</Count>
+          <Title>Medicines Catalogue</Title>
+        </TemplateType5>
+      </PrimaryToken>
+    </Tokens>
+  </App>
+</Deployment>
