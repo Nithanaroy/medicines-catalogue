@@ -25,14 +25,6 @@ namespace MedicinesCatalogue
         public MainPage()
         {
             InitializeComponent();
-            DataContext = App.ViewModel;
-
-            // For some reason VisualStateGroups require specific DataContext to be set.
-            // Not working with Page DataCotext
-            MainListBox.DataContext = App.ViewModel;
-            App.ViewModel.LoadAllMedicines();
-
-            MedicineGroupsList.DataContext = App.ViewModel;
         }
 
         /// <summary>
@@ -42,7 +34,20 @@ namespace MedicinesCatalogue
         {
             App.VerifyUserAuthenticity(this);
             base.OnNavigatedTo(e);
+            SetUpStage();
+        }
+
+        private void SetUpStage()
+        {
             ShowMessageIfAny();
+            DataContext = App.ViewModel;
+
+            // For some reason VisualStateGroups require specific DataContext to be set.
+            // Not working with Page DataCotext
+            MainListBox.DataContext = App.ViewModel;
+            App.ViewModel.LoadAllMedicines();
+
+            MedicineGroupsList.DataContext = App.ViewModel;
         }
 
         /// <summary>

@@ -46,6 +46,11 @@ namespace MedicinesCatalogue.Lib
         public static readonly string passwordChar = "●";
 
         /// <summary>
+        /// The length of the password required to open the app
+        /// </summary>
+        public static readonly int passwordLength = 4;
+
+        /// <summary>
         /// Converts a list of strings into a single string with multiple lines
         /// Currently Used: For displaying error messages
         /// </summary>
@@ -86,7 +91,8 @@ namespace MedicinesCatalogue.Lib
             AddPage,
             UpdatePage,
             SettingsPage,
-            AddReminderPage
+            AddReminderPage,
+            PasswordPage
         };
         /// <summary>
         /// A single place to obtain URL for any page in the app
@@ -112,6 +118,8 @@ namespace MedicinesCatalogue.Lib
                 case URLs.SettingsPage: URL = "/Views/Settings.xaml";
                     break;
                 case URLs.AddReminderPage: URL = "/Views/AddReminders.xaml?medicineId=";
+                    break;
+                case URLs.PasswordPage: URL = "/Views/PasswordPage.xaml";
                     break;
                 default: goto case URLs.MainPage;
             }
