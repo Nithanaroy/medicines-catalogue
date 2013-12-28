@@ -19,7 +19,7 @@ namespace MedicinesCatalogue
     public partial class App : Application
     {
         private static MainViewModel viewModel = null;
-        public static Settings Settings = new Settings();
+        public static Settings Settings = AppAgentAdapter.App.Settings;
 
         public static string DbConnection { get; set; }
         /// <summary>
