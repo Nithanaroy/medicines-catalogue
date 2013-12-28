@@ -289,8 +289,8 @@ namespace MedicinesCatalogue
         /// </summary>
         private void GetSettingsFromIsolatedStorage()
         {
-            Settings.Password = ApplicationHelper.GetValueForSetting(ApplicationHelper.AvailableSettings.Password).ToString();
-            Settings.HasPassword = (bool)ApplicationHelper.GetValueForSetting(ApplicationHelper.AvailableSettings.HasPassword);
+            Settings.Password = AppAgentAdapter.Lib.ApplicationHelper.GetValueForSetting(AppAgentAdapter.Lib.ApplicationHelper.AvailableSettings.Password).ToString();
+            Settings.HasPassword = (bool)AppAgentAdapter.Lib.ApplicationHelper.GetValueForSetting(AppAgentAdapter.Lib.ApplicationHelper.AvailableSettings.HasPassword);
         }
 
         #region PasswordVerification

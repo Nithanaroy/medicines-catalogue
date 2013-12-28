@@ -238,69 +238,6 @@ namespace MedicinesCatalogue.Lib
             }
         }
 
-        /// <summary>
-        /// Maintains the list of default settings
-        /// </summary>
-        private static Dictionary<AvailableSettings, object> defaultSettings;
-
-        /// <summary>
-        /// List of all settings in the application
-        /// </summary>
-        public enum AvailableSettings
-        {
-            HasPassword,
-            Password
-        };
-
-        /// <summary>
-        /// Maintains the list of Default Settings of the Application
-        /// </summary>
-        /// <returns>A dictionary of Setting and Value</returns>
-        public static Dictionary<AvailableSettings, object> GetDefaultSettings()
-        {
-            if (defaultSettings != null)
-                return defaultSettings;
-
-            defaultSettings = new Dictionary<AvailableSettings, object>();
-            defaultSettings.Add(AvailableSettings.HasPassword, false);
-            defaultSettings.Add(AvailableSettings.Password, "");
-            return defaultSettings;
-        }
-
-        /// <summary>
-        /// Only place from which any setting can be obtained. Retrieves from IsolatedStorage
-        /// </summary>
-        /// <param name="setting">Setting to retrieve</param>
-        /// <returns>Value of the setting if found, else null</returns>
-        public static object GetValueForSetting(AvailableSettings setting)
-        {
-            switch (setting)
-            {
-                case AvailableSettings.HasPassword:
-                    return (new ApplicationSettingsHelper<Boolean>("HasPassword", (bool)defaultSettings[AvailableSettings.HasPassword])).Value;
-                case AvailableSettings.Password:
-                    return (new ApplicationSettingsHelper<String>("Password", defaultSettings[AvailableSettings.HasPassword].ToString())).Value;
-            }
-            return null;
-        }
-
-        /// <summary>
-        /// Only place from which any setting can be set. Writes to IsolatedStorage
-        /// </summary>
-        /// <param name="setting">Setting to set</param>
-        public static void SetValueForSetting(AvailableSettings setting, object value)
-        {
-            switch (setting)
-            {
-                case AvailableSettings.HasPassword:
-                    (new ApplicationSettingsHelper<Boolean>("HasPassword", (bool)defaultSettings[AvailableSettings.HasPassword])).Value = (bool)value;
-                    break;
-                case AvailableSettings.Password:
-                    (new ApplicationSettingsHelper<String>("Password", defaultSettings[AvailableSettings.HasPassword].ToString())).Value = value.ToString();
-                    break;
-            }
-        }
-
         #region PivotTabs
         /// <summary>
         /// Tabs on the HomePage

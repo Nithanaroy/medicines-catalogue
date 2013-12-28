@@ -6,6 +6,7 @@ using System.Windows.Input;
 using MedicinesCatalogue.Lib;
 using MedicinesCatalogue.ViewModels;
 using Microsoft.Phone.Controls;
+using AppAgentAdapter.ViewModels;
 
 namespace MedicinesCatalogue.Views
 {

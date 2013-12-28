@@ -76,14 +76,12 @@
     <Compile Include="Convertors\TextToPasswordText.cs" />
     <Compile Include="Convertors\URLToVisibility.cs" />
     <Compile Include="Lib\ApplicationHelper.cs" />
-    <Compile Include="Lib\ApplicationSettingsHelper.cs" />
     <Compile Include="Lib\Extensions.cs" />
     <Compile Include="Lib\NotifyPropertyChangeDataError.cs" />
     <Compile Include="Lib\QuantityTypes.cs" />
     <Compile Include="Lib\ReminderFactory.cs" />
     <Compile Include="Lib\SessionVariables.cs" />
     <Compile Include="ViewModels\GroupViewModel.cs" />
-    <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="Views\AddUpdateMedicine.xaml.cs">
       <DependentUpon>AddUpdateMedicine.xaml</DependentUpon>
     </Compile>
