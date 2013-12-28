@@ -17,5 +17,14 @@
         </TemplateType5>
       </PrimaryToken>
     </Tokens>
+
+    <Extensions>
+      <Extension
+        ExtensionName="Bing_Products_Health_and_Wellness"
+        ConsumerID="{0462fdad-35eb-4765-843c-a9ba1253c2b1}"
+        TaskID="_default"
+        ExtraFile="Extensions\\Extras.xml" />
+    </Extensions>
+
   </App>
 </Deployment>

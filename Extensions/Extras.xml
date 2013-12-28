@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ExtrasInfo>
+
+  <!-- App title (used only in Windows Phone OS 7.1 -->
+  <AppTitle>
+    <default>Display URI Parameters</default>
+  </AppTitle>
+
+  <!-- Search-related captions -->
+  <Consumer ConsumerID="{0462fdad-35eb-4765-843c-a9ba1253c2b1}">
+
+    <!-- Products caption for medicines -->
+    <ExtensionInfo>
+      <Extensions>
+        <ExtensionName>Bing_Products_Health_and_Wellness</ExtensionName>
+      </Extensions>
+      <CaptionString>
+        <default>Medicines URI Details</default>
+      </CaptionString>
+    </ExtensionInfo>
+
+  </Consumer>
+</ExtrasInfo>

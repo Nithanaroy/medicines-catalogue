@@ -428,6 +428,9 @@ namespace MedicinesCatalogue
 
             // Ensure we don't initialize again
             phoneApplicationInitialized = true;
+
+            // Assign the quick card URI mapper class to the application frame.
+            RootFrame.UriMapper = new QuickCardUriMapper();
         }
 
         // Do not add any additional code to this method
