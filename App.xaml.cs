@@ -446,6 +446,9 @@ namespace MedicinesCatalogue
             RootFrame = new PhoneApplicationFrame();
             RootFrame.Navigated += CompleteInitializePhoneApplication;
 
+            // Assign the quick card URI mapper class to the application frame.
+            RootFrame.UriMapper = new QuickCardUriMapper();
+            
             // Handle navigation failures
             RootFrame.NavigationFailed += RootFrame_NavigationFailed;
 

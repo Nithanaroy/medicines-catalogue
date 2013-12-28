@@ -6,7 +6,8 @@
       <Capability Name="ID_CAP_ISV_CAMERA" />
     </Capabilities>
     <Tasks>
-      <DefaultTask Name="_default" NavigationPage="/Views/MainPage.xaml" />
+      <!--<DefaultTask Name="_default" NavigationPage="/Views/MainPage.xaml" />-->
+      <DefaultTask Name="_default" NavigationPage="SearchExtras_Bing_Products?ProductName=saridon" />
       <ExtendedTask Name="BackgroundTask">
         <BackgroundServiceAgent Specifier="ScheduledTaskAgent" Name="LiveTileUpdaterAgent" Source="LiveTileUpdaterAgent" Type="LiveTileUpdaterAgent.ScheduledAgent" />
       </ExtendedTask>
@@ -20,5 +21,14 @@
         </TemplateType5>
       </PrimaryToken>
     </Tokens>
+    
+    <Extensions>
+      <Extension
+        ExtensionName="Bing_Products_Health_and_Wellness"
+        ConsumerID="{0462fdad-35eb-4765-843c-a9ba1253c2b1}"
+        TaskID="_default"
+        ExtraFile="Extensions\\Extras.xml" />
+    </Extensions>
+    
   </App>
 </Deployment>

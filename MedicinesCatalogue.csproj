@@ -81,7 +81,9 @@
     <Compile Include="Lib\QuantityTypes.cs" />
     <Compile Include="Lib\ReminderFactory.cs" />
     <Compile Include="Lib\SessionVariables.cs" />
+    <Compile Include="QuickCardUriMapper.cs" />
     <Compile Include="ViewModels\GroupViewModel.cs" />
+    <Compile Include="ViewModels\QuickCardTargetPageViewModel.cs" />
     <Compile Include="Views\AddUpdateMedicine.xaml.cs">
       <DependentUpon>AddUpdateMedicine.xaml</DependentUpon>
     </Compile>
@@ -100,6 +102,9 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="Views\QuickCardTargetPage.xaml.cs">
+      <DependentUpon>QuickCardTargetPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
@@ -125,6 +130,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\QuickCardTargetPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Settings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -132,9 +141,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AppManifest.xml" />
-    <None Include="Properties\WMAppManifest.xml" />
+    <None Include="Properties\WMAppManifest.xml">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Extensions\Extras.xml" />
     <Content Include="Images\email.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
