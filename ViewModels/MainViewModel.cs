@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 using MedicinesCatalogue.Lib;
-using MedicinesCatalogue.Data;
+using AppAgentAdapter.Data;
 using MedicinesCatalogue.ViewModels;
 using System.Linq;
 using System.Data.Linq;
@@ -118,6 +118,12 @@ namespace MedicinesCatalogue
                                  select new PublicGrouping<string, Medicine>(groupName);
 
             AreAllGroupsLoaded = true;
+        }
+
+
+        public static int getNUmberOfMedicines()
+        {
+            return new Random().Next(10);
         }
     }
 }

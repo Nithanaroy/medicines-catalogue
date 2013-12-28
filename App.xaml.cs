@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using MedicinesCatalogue.Data;
+using AppAgentAdapter.Data;
 using MedicinesCatalogue.Lib;
 using System.Collections.Generic;
 using Coding4Fun.Toolkit.Controls;
@@ -12,6 +12,7 @@ using System.Windows.Media;
 using Microsoft.Phone.Data.Linq;
 using MedicinesCatalogue.ViewModels;
 using System.Runtime.InteropServices;
+using Microsoft.Phone.Scheduler;
 
 namespace MedicinesCatalogue
 {
@@ -103,6 +104,28 @@ namespace MedicinesCatalogue
             CreateDB();
             UpdateDB();
             GetSettingsFromIsolatedStorage();
+            StartAgent();
+        }
+
+        private void StartAgent()
+        {
+            StopAgentIfStarted();
+
+            PeriodicTask task = new PeriodicTask(ApplicationHelper.myBackgroundAgent);
+            task.Description = "Medicines Catalogue, Custom Agent for Live Tiles & Lock Screen Notifications";
+            ScheduledActionService.Add(task);
+#if DEBUG
+            // If we're debugging, attempt to start the task immediately
+            ScheduledActionService.LaunchForTest(ApplicationHelper.myBackgroundAgent, new TimeSpan(0, 0, 1));
+#endif
+        }
+
+        private void StopAgentIfStarted()
+        {
+            if (ScheduledActionService.Find(ApplicationHelper.myBackgroundAgent) != null)
+            {
+                ScheduledActionService.Remove(ApplicationHelper.myBackgroundAgent);
+            }
         }
 
         /// <summary>

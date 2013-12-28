@@ -4,7 +4,7 @@ using MedicinesCatalogue.ViewModels;
 using Microsoft.Phone.Scheduler;
 using System.Linq;
 using System.Collections.ObjectModel;
-using MedicinesCatalogue.Data;
+using AppAgentAdapter.Data;
 
 namespace MedicinesCatalogue.Lib
 {

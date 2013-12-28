@@ -75,9 +75,6 @@
     <Compile Include="Convertors\StringToDouble.cs" />
     <Compile Include="Convertors\TextToPasswordText.cs" />
     <Compile Include="Convertors\URLToVisibility.cs" />
-    <Compile Include="Data\Group.cs" />
-    <Compile Include="Data\Medicine_Group.cs" />
-    <Compile Include="Data\Settings.cs" />
     <Compile Include="Lib\ApplicationHelper.cs" />
     <Compile Include="Lib\ApplicationSettingsHelper.cs" />
     <Compile Include="Lib\Extensions.cs" />
@@ -85,9 +82,7 @@
     <Compile Include="Lib\QuantityTypes.cs" />
     <Compile Include="Lib\ReminderFactory.cs" />
     <Compile Include="Lib\SessionVariables.cs" />
-    <Compile Include="Lib\Validations.cs" />
     <Compile Include="ViewModels\GroupViewModel.cs" />
-    <Compile Include="ViewModels\MedicinesGroupsViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="Views\AddUpdateMedicine.xaml.cs">
       <DependentUpon>AddUpdateMedicine.xaml</DependentUpon>
@@ -99,8 +94,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Data\Medicine.cs" />
-    <Compile Include="Data\MedicineContext.cs" />
     <Compile Include="Views\DetailsPage.xaml.cs">
       <DependentUpon>DetailsPage.xaml</DependentUpon>
     </Compile>
@@ -197,6 +190,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AppAgentAdapter\AppAgentAdapter.csproj">
+      <Project>{B72919C9-8DAA-4A59-BE2D-3A1C14DD28CC}</Project>
+      <Name>AppAgentAdapter</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Code Samples\Coding for fun toolkit\source\Coding4Fun.Toolkit.Controls.WindowsPhone7\Coding4Fun.Toolkit.Controls %28WP7%29.csproj">
       <Project>{6E223290-66D8-4058-99CF-501769D6A641}</Project>
       <Name>Coding4Fun.Toolkit.Controls %28WP7%29</Name>
@@ -204,6 +201,10 @@
     <ProjectReference Include="..\Code Samples\Windows Phone Toolkit %28Nov 2011%29\Microsoft.Phone.Controls.Toolkit.WP7\Microsoft.Phone.Controls.Toolkit.WP7.csproj">
       <Project>{2CF4FC8A-4AA5-4D6A-9BB6-623A86A1EDC9}</Project>
       <Name>Microsoft.Phone.Controls.Toolkit.WP7</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LiveTileUpdaterAgent\LiveTileUpdaterAgent.csproj">
+      <Project>{015A5141-CC34-4040-B7DA-7AB00A19E1AA}</Project>
+      <Name>LiveTileUpdaterAgent</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />

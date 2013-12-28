@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using MedicinesCatalogue.Data;
+using AppAgentAdapter.Data;
 using System.Linq;
 using System.Collections.Generic;
 using MedicinesCatalogue.Lib;
@@ -87,7 +87,7 @@ namespace MedicinesCatalogue.ViewModels
 
         internal void LoadAllGroups()
         {
-            AllGroups = new ObservableCollection<Data.Group>(db.Groups.OrderBy(g => g.Name));
+            AllGroups = new ObservableCollection<AppAgentAdapter.Data.Group>(db.Groups.OrderBy(g => g.Name));
         }
 
         internal void Save()

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
-using MedicinesCatalogue.Data;
+using AppAgentAdapter.Data;
 using System.Linq;
 using System.Data.Linq;
 using System.Collections.ObjectModel;

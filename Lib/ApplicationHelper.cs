@@ -6,7 +6,6 @@ using System.Text;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using Microsoft.Phone.Shell;
-using MedicinesCatalogue.Data;
 using System.Data.Linq;
 
 namespace MedicinesCatalogue.Lib
@@ -44,6 +43,11 @@ namespace MedicinesCatalogue.Lib
         /// The password masking character to be used everywhere
         /// </summary>
         public static readonly string passwordChar = "●";
+
+        /// <summary>
+        /// The name of the agent which will be used as a periodic task
+        /// </summary>
+        public static readonly string myBackgroundAgent = "LiveTileUpdaterAgent";
 
         /// <summary>
         /// Converts a list of strings into a single string with multiple lines

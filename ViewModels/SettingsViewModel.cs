@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using MedicinesCatalogue.Data;
+using AppAgentAdapter.Data;
 using MedicinesCatalogue.Lib;
 
 namespace MedicinesCatalogue.ViewModels

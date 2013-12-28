@@ -7,6 +7,9 @@
     </Capabilities>
     <Tasks>
       <DefaultTask Name="_default" NavigationPage="/Views/MainPage.xaml" />
+      <ExtendedTask Name="BackgroundTask">
+        <BackgroundServiceAgent Specifier="ScheduledTaskAgent" Name="LiveTileUpdaterAgent" Source="LiveTileUpdaterAgent" Type="LiveTileUpdaterAgent.ScheduledAgent" />
+      </ExtendedTask>
     </Tasks>
     <Tokens>
       <PrimaryToken TokenID="MedicinesCatalogueToken" TaskName="_default">

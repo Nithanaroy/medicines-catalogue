@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using Microsoft.Phone.Controls;
-using MedicinesCatalogue.Data;
+using AppAgentAdapter.Data;
 using MedicinesCatalogue.Lib;
 using System.Collections.Generic;
 using System.Linq;

@@ -5,7 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using Microsoft.Phone.Controls;
-using MedicinesCatalogue.Data;
+using AppAgentAdapter.Data;
 using MedicinesCatalogue.Lib;
 using MedicinesCatalogue.ViewModels;
 
