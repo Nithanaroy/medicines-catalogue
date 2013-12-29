@@ -94,6 +94,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\BlinkEyesAlertPage.xaml.cs">
+      <DependentUpon>BlinkEyesAlertPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DetailsPage.xaml.cs">
       <DependentUpon>DetailsPage.xaml</DependentUpon>
     </Compile>
@@ -122,6 +125,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\BlinkEyesAlertPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\DetailsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -147,6 +154,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Extensions\Extras.xml" />
+    <Resource Include="Images\blinkin_eyes.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Files\ImageHTML.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\ImageHTML.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Content Include="Images\email.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -214,6 +230,7 @@
       <Name>LiveTileUpdaterAgent</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
