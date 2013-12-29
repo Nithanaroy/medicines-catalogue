@@ -5,6 +5,7 @@ using Microsoft.Phone.Controls;
 using System.Windows;
 using System;
 using System.Collections.Generic;
+using ImageTools.IO.Gif;
 
 namespace MedicinesCatalogue.Views
 {
@@ -14,8 +15,13 @@ namespace MedicinesCatalogue.Views
         {
             InitializeComponent();
 
-            BlinkEyesBrowser.Loaded += new RoutedEventHandler(BlinkEyesBrowser_Loaded);
+            ImageTools.IO.Decoders.AddDecoder<GifDecoder>();
+            ContentPanel.DataContext = this;
+            //BlinkEyesBrowser.Loaded += new RoutedEventHandler(BlinkEyesBrowser_Loaded);
         }
+
+        private Uri _ImageSource = new Uri("/Images/blinkin_eyes.gif", UriKind.Relative);
+        public Uri ImageSource { get { return _ImageSource; } }
 
         void BlinkEyesBrowser_Loaded(object sender, RoutedEventArgs e)
         {
