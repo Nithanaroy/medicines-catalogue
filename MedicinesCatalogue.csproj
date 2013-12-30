@@ -160,7 +160,7 @@
     <Resource Include="Files\ImageHTML.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Views\ImageHTML.html">
+    <Resource Include="Images\Default.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Content Include="Images\email.png">
@@ -193,9 +193,9 @@
     <Content Include="Images\home.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\PageBackground.jpg">
+    <Resource Include="Images\PageBackground.JPG">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </Resource>
     <Content Include="Images\save.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

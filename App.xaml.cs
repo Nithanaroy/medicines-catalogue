@@ -376,6 +376,14 @@ namespace MedicinesCatalogue
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
+            #region Attempt to set Background for all pages
+            //ImageBrush brush = new ImageBrush
+            //{
+            //    ImageSource = new System.Windows.Media.Imaging.BitmapImage(new Uri("/Images/vintageBeach.png", UriKind.Relative)),
+            //    Stretch = Stretch.UniformToFill
+            //};
+            //this.RootFrame.Background = brush; 
+            #endregion
         }
 
         // Code to execute when the application is activated (brought to foreground)

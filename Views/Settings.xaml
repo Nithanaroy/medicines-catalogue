@@ -31,8 +31,11 @@
         <ViewModels:SettingsViewModel />
     </phone:PhoneApplicationPage.DataContext>
 
-    <Grid x:Name="LayoutRoot"
-          Background="Transparent">
+    <Grid x:Name="LayoutRoot">
+        <Grid.Background>
+            <ImageBrush ImageSource="/MedicinesCatalogue;component/Images/PageBackground.JPG"
+                        Stretch="UniformToFill" />
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />

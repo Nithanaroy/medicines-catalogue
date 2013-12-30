@@ -158,11 +158,18 @@
     </phone:PhoneApplicationPage.ApplicationBar>
 
     <Grid x:Name="LayoutRoot">
+        <Grid.Background>
+            <ImageBrush ImageSource="/MedicinesCatalogue;component/Images/PageBackground.JPG"
+                        Stretch="UniformToFill" />
+        </Grid.Background>
         <controls:Pivot x:Name="RootPivot"
                         HorizontalAlignment="Left"
                         Title="MY MEDICINES CATALOGUE"
                         SelectionChanged="RootPivot_SelectionChanged"
                         LoadedPivotItem="RootPivot_LoadedPivotItem">
+            <controls:Pivot.Background>
+                <ImageBrush Stretch="UniformToFill" />
+            </controls:Pivot.Background>
             <controls:PivotItem Header="all">
                 <Grid x:Name="ContentPanel"
                       Background="Transparent"

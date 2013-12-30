@@ -7,7 +7,8 @@
       <Capability Name="ID_CAP_WEBBROWSERCOMPONENT" />
     </Capabilities>
     <Tasks>
-      <DefaultTask Name="_default" NavigationPage="/Views/BlinkEyesAlertPage.xaml" />
+      <DefaultTask Name="_default" NavigationPage="/Views/MainPage.xaml" />
+      <!--<DefaultTask Name="_default" NavigationPage="/Views/BlinkEyesAlertPage.xaml" />-->
       <!--<DefaultTask Name="_default" NavigationPage="SearchExtras_Bing_Products?ProductName=saridon" />-->
       <ExtendedTask Name="BackgroundTask">
         <BackgroundServiceAgent Specifier="ScheduledTaskAgent" Name="LiveTileUpdaterAgent" Source="LiveTileUpdaterAgent" Type="LiveTileUpdaterAgent.ScheduledAgent" />
