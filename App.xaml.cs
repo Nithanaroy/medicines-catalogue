@@ -298,41 +298,44 @@ namespace MedicinesCatalogue
         {
             if (SessionVariables.IsLoggedIn)
                 return;
-            var input = new PasswordInputPrompt
-            {
-                Title = "Password Required!",
-                Message = "\r\nThe page you are trying to access requires a password",
-                MessageTextWrapping = TextWrapping.Wrap,
-                VerticalAlignment = VerticalAlignment.Center,
-                IsAppBarVisible = true,
-                IsSubmitOnEnterKey = true,
-                HorizontalAlignment = HorizontalAlignment.Center,
-                HorizontalContentAlignment = HorizontalAlignment.Center
+            requestedPage.NavigationService.Navigate(new Uri(ApplicationHelper.GetUrlFor(ApplicationHelper.URLs.PasswordPage), UriKind.Relative));
+            #region Old Password Implementation
+            //var input = new PasswordInputPrompt
+            //{
+            //    Title = "Password Required!",
+            //    Message = "\r\nThe page you are trying to access requires a password",
+            //    MessageTextWrapping = TextWrapping.Wrap,
+            //    VerticalAlignment = VerticalAlignment.Center,
+            //    IsAppBarVisible = true,
+            //    IsSubmitOnEnterKey = true,
+            //    HorizontalAlignment = HorizontalAlignment.Center,
+            //    HorizontalContentAlignment = HorizontalAlignment.Center
 
-            };
-            input.Completed += delegate(object sender, PopUpEventArgs<string, PopUpResult> e)
-            {
-                if (e.PopUpResult != PopUpResult.Ok)
-                {
-                    // TODO: A better way to handle Back button close of pop up
-                    if (requestedPage.NavigationService.CanGoBack)
-                        requestedPage.NavigationService.GoBack();
-                    else
-                        // requestedPage.NavigationService.Navigate(new Uri(ApplicationHelper.GetUrlFor(ApplicationHelper.URLs.MainPage), UriKind.Relative));
-                        throw new UnauthorizedAccessException("User cannot access this page. Quitting the app as exit was triggered");
-                    return;
-                }
-                if (e.Result.Equals(Settings.Password))
-                    SessionVariables.IsLoggedIn = true;
-                else
-                {
-                    SessionVariables.IsLoggedIn = false;
-                    MessageBox.Show("Incorrect Password");
-                    VerifyUserAuthenticity(requestedPage);
-                }
-            };
-            input.InputScope = new InputScope { Names = { new InputScopeName { NameValue = InputScopeNameValue.NumericPassword } } };
-            input.Show();
+            //};
+            //input.Completed += delegate(object sender, PopUpEventArgs<string, PopUpResult> e)
+            //{
+            //    if (e.PopUpResult != PopUpResult.Ok)
+            //    {
+            //        // TODO: A better way to handle Back button close of pop up
+            //        if (requestedPage.NavigationService.CanGoBack)
+            //            requestedPage.NavigationService.GoBack();
+            //        else
+            //            // requestedPage.NavigationService.Navigate(new Uri(ApplicationHelper.GetUrlFor(ApplicationHelper.URLs.MainPage), UriKind.Relative));
+            //            throw new UnauthorizedAccessException("User cannot access this page. Quitting the app as exit was triggered");
+            //        return;
+            //    }
+            //    if (e.Result.Equals(Settings.Password))
+            //        SessionVariables.IsLoggedIn = true;
+            //    else
+            //    {
+            //        SessionVariables.IsLoggedIn = false;
+            //        MessageBox.Show("Incorrect Password");
+            //        VerifyUserAuthenticity(requestedPage);
+            //    }
+            //};
+            //input.InputScope = new InputScope { Names = { new InputScopeName { NameValue = InputScopeNameValue.NumericPassword } } };
+            //input.Show(); 
+            #endregion
         }
         #endregion
 

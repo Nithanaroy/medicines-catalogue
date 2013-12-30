@@ -7,15 +7,105 @@
                             xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                             xmlns:ViewModels="clr-namespace:AppAgentAdapter.ViewModels;assembly=AppAgentAdapter"
                             xmlns:Convertors="clr-namespace:MedicinesCatalogue.Convertors"
+                            xmlns:toolkitPrimitives="clr-namespace:Microsoft.Phone.Controls.Primitives;assembly=Microsoft.Phone.Controls.Toolkit"
                             x:Class="MedicinesCatalogue.Views.settings"
                             SupportedOrientations="Portrait"
                             Orientation="Portrait"
                             mc:Ignorable="d"
                             shell:SystemTray.IsVisible="True"
-                            Loaded="PhoneApplicationPage_Loaded">
+                            Loaded="PhoneApplicationPage_Loaded"
+                            d:DesignHeight="696"
+                            d:DesignWidth="480">
     <phone:PhoneApplicationPage.Resources>
         <Convertors:TextToPasswordText x:Key="TextToPasswordText" />
         <Convertors:BoolToVisibility x:Key="BoolToVisibility" />
+
+        <Style x:Key="ToggleSwitchStyle1"
+               TargetType="toolkit:ToggleSwitch">
+            <Setter Property="Background"
+                    Value="{StaticResource PhoneBackgroundBrush}" />
+            <Setter Property="FontFamily"
+                    Value="{StaticResource PhoneFontFamilyLight}" />
+            <Setter Property="FontSize"
+                    Value="{StaticResource PhoneFontSizeLarge}" />
+            <Setter Property="Foreground"
+                    Value="{StaticResource PhoneForegroundBrush}" />
+            <Setter Property="IsTabStop"
+                    Value="False" />
+            <Setter Property="HorizontalContentAlignment"
+                    Value="Left" />
+            <Setter Property="SwitchForeground"
+                    Value="{StaticResource PhoneAccentBrush}" />
+            <Setter Property="VerticalContentAlignment"
+                    Value="Top" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="toolkit:ToggleSwitch">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Padding="{TemplateBinding Padding}"
+                                CacheMode="BitmapCache">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="Header"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             Duration="0"
+                                                             To="0.3" />
+                                            <DoubleAnimation Storyboard.TargetName="Content"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             Duration="0"
+                                                             To="0.3" />
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Grid Margin="12,5,36,42">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <ContentControl x:Name="Header"
+                                                Content="{TemplateBinding Header}"
+                                                ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                                FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                                                FontSize="{StaticResource PhoneFontSizeNormal}"
+                                                Foreground="{StaticResource PhoneSubtleBrush}"
+                                                HorizontalAlignment="Left"
+                                                IsTabStop="False"
+                                                Margin="-1,0,0,0"
+                                                Opacity="{TemplateBinding Opacity}"
+                                                VerticalAlignment="Bottom" />
+                                <ContentControl x:Name="Content"
+                                                Grid.Row="1"
+                                                Content="{TemplateBinding Content}"
+                                                ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                IsTabStop="False"
+                                                Margin="-1,1,12,-7"
+                                                Opacity="{TemplateBinding Opacity}"
+                                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                <toolkitPrimitives:ToggleSwitchButton x:Name="Switch"
+                                                                      Grid.RowSpan="2"
+                                                                      Grid.Column="1"
+                                                                      Background="{TemplateBinding Background}"
+                                                                      Margin="-22,-29,-24,-28"
+                                                                      Opacity="{TemplateBinding Opacity}"
+                                                                      SwitchForeground="{TemplateBinding SwitchForeground}"
+                                                                      VerticalAlignment="Bottom" />
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
     </phone:PhoneApplicationPage.Resources>
     <phone:PhoneApplicationPage.FontFamily>
         <StaticResource ResourceKey="PhoneFontFamilyNormal" />
@@ -75,13 +165,14 @@
                                           Grid.Row="0"
                                           Grid.Column="1"
                                           FontSize="{StaticResource PhoneFontSizeMedium}"
-                                          IsChecked="{Binding Settings.HasPassword, Mode=TwoWay, UpdateSourceTrigger=Explicit}" />
+                                          IsChecked="{Binding Settings.HasPassword, Mode=TwoWay, UpdateSourceTrigger=Explicit}"
+                                          Style="{StaticResource ToggleSwitchStyle1}" />
                     <StackPanel Grid.Row="1"
                                 Grid.ColumnSpan="2"
                                 Visibility="{Binding IsChecked, Converter={StaticResource BoolToVisibility}, ElementName=PasswordProtectionToggleSwitch}">
                         <TextBlock Text="Password"
                                    Style="{StaticResource PhoneTextNormalStyle}" />
-                        <TextBlock Name="ActualPasscode"
+                        <TextBlock x:Name="ActualPasscode"
                                    Visibility="Collapsed"
                                    Text="{Binding Settings.Password, Mode=TwoWay, NotifyOnValidationError=True, UpdateSourceTrigger=Explicit, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" />
                         <TextBox x:Name="PasswordTextBox"
@@ -106,9 +197,6 @@
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True"
                               IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/Images/save.png"
-                                            Text="save"
-                                            Click="SaveMenuButton_Click" />
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem Text="home"
                                               Click="HomeMenuItem_Click" />
@@ -116,6 +204,9 @@
                                               Click="AboutMenuItem_Click" />
 
             </shell:ApplicationBar.MenuItems>
+            <shell:ApplicationBarIconButton IconUri="/Images/save.png"
+                                            Text="save"
+                                            Click="SaveMenuButton_Click" />
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 
