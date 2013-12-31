@@ -305,6 +305,7 @@ namespace MedicinesCatalogue.Views
             if (actionToTake == MessageBoxResult.OK)
             {
                 viewmodel.Medicine.PictureURI = null;
+                MedicineImage.Source = ApplicationHelper.defaultImage; // TODO: Setting the PictureURI should automatically set MedicineImage
                 ApplicationHelper.DeleteImageInIsolatedStorage(tempJPEG);
             }
         }
