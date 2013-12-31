@@ -25,6 +25,19 @@ namespace MedicinesCatalogue
         public MainPage()
         {
             InitializeComponent();
+
+            this.Loaded += MainPage_Loaded;
+        }
+
+        /// <summary>
+        /// The app is launched by search extensibility
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void MainPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (this.NavigationContext.QueryString.Keys.Count > 0)
+                App.ViewModel.LoadUriParameters(this.NavigationContext.QueryString);
         }
 
         /// <summary>
@@ -37,6 +50,12 @@ namespace MedicinesCatalogue
             SetUpStage();
         }
 
+        /// <summary>
+        /// Sets the DataContext
+        /// Loads all the medicines if the app is opened normally.
+        /// Doesnt load all medicines if app laucnhed by Search Extensibility
+        /// In that case the required medicines are loaded in Page Loaded event above
+        /// </summary>
         private void SetUpStage()
         {
             ShowMessageIfAny();
@@ -45,7 +64,11 @@ namespace MedicinesCatalogue
             // For some reason VisualStateGroups require specific DataContext to be set.
             // Not working with Page DataCotext
             MainListBox.DataContext = App.ViewModel;
-            App.ViewModel.LoadAllMedicines();
+
+            if (this.NavigationContext.QueryString.Keys.Count == 0)
+                App.ViewModel.LoadAllMedicines();
+            else
+                ((PivotItem)RootPivot.Items[0]).Header = "search res";
 
             MedicineGroupsList.DataContext = App.ViewModel;
         }

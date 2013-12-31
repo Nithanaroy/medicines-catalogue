@@ -400,7 +400,7 @@ namespace MedicinesCatalogue
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
             // Ensure that application state is restored appropriately
-            App.ViewModel.LoadAllMedicines();
+            //App.ViewModel.LoadAllMedicines();
         }
 
         // Code to execute when the application is deactivated (sent to background)

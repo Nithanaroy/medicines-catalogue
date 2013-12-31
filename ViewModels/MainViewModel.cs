@@ -83,8 +83,8 @@ namespace MedicinesCatalogue.ViewModels
         /// </summary>
         ~MainViewModel()
         {
-            db.Dispose();
-            db = null;
+            //db.Dispose();
+            //db = null;
         }
 
         /// <summary>
@@ -118,6 +118,26 @@ namespace MedicinesCatalogue.ViewModels
                                  select new PublicGrouping<string, Medicine>(groupName);
 
             AreAllGroupsLoaded = true;
+        }
+
+        // Load parameters from quick page; extract from the NavigationContext.QueryString
+        public void LoadUriParameters(IDictionary<string, string> QueryString)
+        {
+            // Clear parameters in the ViewModel.
+            Medicines = new ObservableCollection<Medicine>();
+
+            // Loop through the quick card parameters in the deep link URI.
+            foreach (string strKey in QueryString.Keys)
+            {
+                // Set default value for parameter if no value is present.
+                string strKeyValue = "<no value present in URI>";
+
+                // Try to extract parameter value from URI.
+                QueryString.TryGetValue(strKey, out strKeyValue);
+
+                // Add parameter object to ViewModel collection.
+                Medicines.Add(db.Medicines.SingleOrDefault(m => m.Name.ToLower().Contains(strKeyValue.ToLower())));
+            }
         }
     }
 }

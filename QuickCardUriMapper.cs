@@ -10,7 +10,8 @@ namespace MedicinesCatalogue
     public class QuickCardUriMapper : UriMapperBase
     {
         // Navigation destination. 
-        private static string TargetPageName = "QuickCardTargetPage.xaml";
+        //private static string TargetPageName = "QuickCardTargetPage.xaml";
+        private static string TargetPageName = "MainPage.xaml";
         private string tempUri;
 
         public override Uri MapUri(Uri uri)
