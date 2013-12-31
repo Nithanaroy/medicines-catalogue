@@ -7,9 +7,9 @@
       <Capability Name="ID_CAP_WEBBROWSERCOMPONENT" />
     </Capabilities>
     <Tasks>
-      <DefaultTask Name="_default" NavigationPage="/Views/MainPage.xaml" />
+      <!--<DefaultTask Name="_default" NavigationPage="/Views/MainPage.xaml" />-->
       <!--<DefaultTask Name="_default" NavigationPage="/Views/BlinkEyesAlertPage.xaml" />-->
-      <!--<DefaultTask Name="_default" NavigationPage="SearchExtras_Bing_Products?ProductName=saridon" />-->
+      <DefaultTask Name="_default" NavigationPage="SearchExtras?ProductName=saridon&amp;Category=Bing_Products_Health_and_Wellness" />
       <ExtendedTask Name="BackgroundTask">
         <BackgroundServiceAgent Specifier="ScheduledTaskAgent" Name="LiveTileUpdaterAgent" Source="LiveTileUpdaterAgent" Type="LiveTileUpdaterAgent.ScheduledAgent" />
       </ExtendedTask>
@@ -27,7 +27,7 @@
     <Extensions>
       <Extension
         ExtensionName="Bing_Products_Health_and_Wellness"
-        ConsumerID="{0462fdad-35eb-4765-843c-a9ba1253c2b1}"
+        ConsumerID="{5B04B775-356B-4AA0-AAF8-6491FFEA5661}"
         TaskID="_default"
         ExtraFile="Extensions\\Extras.xml" />
     </Extensions>

@@ -4,6 +4,9 @@ using System.Net;
 
 namespace MedicinesCatalogue
 {
+
+    // Sample URI: /SearchExtras?ProductName=Xbox+360&Category=Bing_Products_Electronics,Bing_Products_Office_Products
+
     public class QuickCardUriMapper : UriMapperBase
     {
         // Navigation destination. 
