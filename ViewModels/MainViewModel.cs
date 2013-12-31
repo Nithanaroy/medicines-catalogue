@@ -29,7 +29,7 @@ namespace MedicinesCatalogue
 
         public MainViewModel()
         {
-            db = new MedicineContext(App.DbConnection);
+            db = AppAgentAdapter.App.db;
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace MedicinesCatalogue
         /// <returns>New connection to DB</returns>
         public MedicineContext GetNewConnection()
         {
-            db = new MedicineContext(App.DbConnection);
+            db = AppAgentAdapter.App.db;
             return db;
         }
 

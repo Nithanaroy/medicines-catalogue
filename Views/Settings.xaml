@@ -178,7 +178,6 @@
                         <TextBox x:Name="PasswordTextBox"
                                  KeyUp="PasswordTextBox_KeyUp"
                                  InputScope="Number"
-                                 MaxLength="4"
                                  AcceptsReturn="True"
                                  Text="{Binding Text, Converter={StaticResource TextToPasswordText}, ElementName=ActualPasscode, Mode=OneTime}"
                                  TextAlignment="Center" />

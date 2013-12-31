@@ -78,6 +78,11 @@ namespace MedicinesCatalogue.Views
             //modify new passcode according to entered key
             enteredPasscode = GetNewPasscode(enteredPasscode, e.PlatformKeyCode);
 
+            // Check the max length of the password allowed
+            if (enteredPasscode.Length > ApplicationHelper.passwordLength)
+                enteredPasscode = enteredPasscode.Substring(0, ApplicationHelper.passwordLength);
+
+
             ActualPasscode.Text = enteredPasscode;
 
             //replace text by *
