@@ -133,7 +133,7 @@
 
         <StackPanel Grid.Row="0"
                     Margin="12,17,0,28">
-            <TextBlock Text="MEDICINES CATALOGUE"
+            <TextBlock Text="MEDICINES CATALOGUE PRO"
                        Style="{StaticResource PhoneTextNormalStyle}" />
             <TextBlock Text="settings"
                        Margin="9,-7,0,0"

@@ -65,7 +65,7 @@
                     Grid.Row="0"
                     Margin="12,17,0,28">
             <TextBlock x:Name="PageTitle"
-                       Text="MY MEDICINES CATALOGUE"
+                       Text="MEDICINES CATALOGUE PRO"
                        Style="{StaticResource PhoneTextNormalStyle}" />
             <TextBlock x:Name="ListTitle"
                        Text="{Binding Name}"

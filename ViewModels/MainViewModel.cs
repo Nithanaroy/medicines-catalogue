@@ -8,7 +8,7 @@ using System.Linq;
 using System.Data.Linq;
 using System.Collections.Generic;
 
-namespace MedicinesCatalogue
+namespace MedicinesCatalogue.ViewModels
 {
     public class MainViewModel : NotifyPropertyChangeDataError
     {
@@ -118,12 +118,6 @@ namespace MedicinesCatalogue
                                  select new PublicGrouping<string, Medicine>(groupName);
 
             AreAllGroupsLoaded = true;
-        }
-
-
-        public static int getNUmberOfMedicines()
-        {
-            return new Random().Next(10);
         }
     }
 }

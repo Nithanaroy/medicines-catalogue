@@ -107,6 +107,9 @@ namespace MedicinesCatalogue
             StartAgent();
         }
 
+        /// <summary>
+        /// A background agent that handles the live tile updation
+        /// </summary>
         private void StartAgent()
         {
             StopAgentIfStarted();
@@ -120,6 +123,9 @@ namespace MedicinesCatalogue
 #endif
         }
 
+        /// <summary>
+        /// A background agent that handles the live tile updation
+        /// </summary>
         private void StopAgentIfStarted()
         {
             if (ScheduledActionService.Find(ApplicationHelper.myBackgroundAgent) != null)

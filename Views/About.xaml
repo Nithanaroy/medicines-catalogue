@@ -31,7 +31,7 @@
                     Grid.Row="0"
                     Margin="12,17,0,28">
             <TextBlock x:Name="ApplicationTitle"
-                       Text="MY MEDICINES CATALOGUE"
+                       Text="MEDICINES CATALOGUE PRO"
                        Style="{StaticResource PhoneTextNormalStyle}" />
             <TextBlock x:Name="PageTitle"
                        Text="about"

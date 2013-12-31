@@ -164,7 +164,7 @@
         </Grid.Background>
         <controls:Pivot x:Name="RootPivot"
                         HorizontalAlignment="Left"
-                        Title="MY MEDICINES CATALOGUE"
+                        Title="MEDICINES CATALOGUE PRO"
                         SelectionChanged="RootPivot_SelectionChanged"
                         LoadedPivotItem="RootPivot_LoadedPivotItem">
             <controls:Pivot.Background>
