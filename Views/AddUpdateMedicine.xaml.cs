@@ -147,6 +147,8 @@ namespace MedicinesCatalogue.Views
 
             RemindersListBox.ItemsSource = viewmodel.Medicine.Reminders;
             SetNoRemindersHelperText();
+
+            App.TriggerBlinkingEyes(this);
         }
 
         /// <summary>

@@ -96,7 +96,8 @@ namespace MedicinesCatalogue.Lib
             UpdatePage,
             SettingsPage,
             AddReminderPage,
-            PasswordPage
+            PasswordPage,
+            BlinkEyesPage
         };
         /// <summary>
         /// A single place to obtain URL for any page in the app
@@ -124,6 +125,8 @@ namespace MedicinesCatalogue.Lib
                 case URLs.AddReminderPage: URL = "/Views/AddReminders.xaml?medicineId=";
                     break;
                 case URLs.PasswordPage: URL = "/Views/PasswordPage.xaml";
+                    break;
+                case URLs.BlinkEyesPage: URL = "/Views/BlinkEyesAlertPage.xaml";
                     break;
                 default: goto case URLs.MainPage;
             }

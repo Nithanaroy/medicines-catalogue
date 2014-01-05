@@ -13,6 +13,7 @@ using Microsoft.Phone.Data.Linq;
 using MedicinesCatalogue.ViewModels;
 using System.Runtime.InteropServices;
 using Microsoft.Phone.Scheduler;
+using System.Windows.Threading;
 
 namespace MedicinesCatalogue
 {
@@ -112,27 +113,28 @@ namespace MedicinesCatalogue
         /// </summary>
         private void StartAgent()
         {
-            StopAgentIfStarted();
-
-            PeriodicTask task = new PeriodicTask(ApplicationHelper.myBackgroundAgent);
-            task.Description = "Medicines Catalogue, Custom Agent for Live Tiles & Lock Screen Notifications";
-            ScheduledActionService.Add(task);
-#if DEBUG
-            // If we're debugging, attempt to start the task immediately
-            ScheduledActionService.LaunchForTest(ApplicationHelper.myBackgroundAgent, new TimeSpan(0, 0, 1));
-#endif
-        }
-
-        /// <summary>
-        /// A background agent that handles the live tile updation
-        /// </summary>
-        private void StopAgentIfStarted()
-        {
-            if (ScheduledActionService.Find(ApplicationHelper.myBackgroundAgent) != null)
+            try
             {
-                ScheduledActionService.Remove(ApplicationHelper.myBackgroundAgent);
+                foreach (PeriodicTask oldTask in ScheduledActionService.GetActions<PeriodicTask>())
+                    ScheduledActionService.Remove(oldTask.Name);
+
+                PeriodicTask task = new PeriodicTask(ApplicationHelper.myBackgroundAgent);
+                task.Description = "Medicines Catalogue, For Live Tiles";
+                task.ExpirationTime = DateTime.Now.AddDays(14);
+
+                ScheduledActionService.Add(task);
+
+#if DEBUG
+                // If we're debugging, attempt to start the task immediately
+                ScheduledActionService.LaunchForTest(ApplicationHelper.myBackgroundAgent, new TimeSpan(0, 0, 1));
+#endif
+            }
+            catch (Exception)
+            {
+                // Silently ignore as they is shortage of memory or user has disabled background task for my app
             }
         }
+
 
         /// <summary>
         /// :: Important ::
@@ -346,6 +348,34 @@ namespace MedicinesCatalogue
         #endregion
 
         /// <summary>
+        /// The timer variable that is used to control the Blinking Eyes picture that appers for every 30s
+        /// </summary>
+        private static DispatcherTimer blinkingEyesTimer;
+        private static double blinkEyeFrequencyInSeconds = 90;
+
+        /// <summary>
+        /// The function handles the navigation to blinking of eyes page for every 30s
+        /// </summary>
+        /// <param name="sourcePage">Page from which navigation is initiated</param>
+        public static void TriggerBlinkingEyes(PhoneApplicationPage sourcePage)
+        {
+            blinkingEyesTimer = new DispatcherTimer();
+            blinkingEyesTimer.Interval = TimeSpan.FromSeconds(blinkEyeFrequencyInSeconds);
+            blinkingEyesTimer.Tick += (s, e) =>
+            {
+                sourcePage.NavigationService.Navigate(new Uri(ApplicationHelper.GetUrlFor(ApplicationHelper.URLs.BlinkEyesPage), UriKind.Relative));
+            };
+            blinkingEyesTimer.Start();
+
+            sourcePage.Unloaded += (s, e) =>
+            {
+                if (blinkingEyesTimer.IsEnabled)
+                    blinkingEyesTimer.Stop();
+            };
+        }
+
+
+        /// <summary>
         /// Shows a dialog to create a new group
         /// </summary>
         /// <returns>Name of the new group if created else an empty string</returns>
@@ -465,7 +495,7 @@ namespace MedicinesCatalogue
 
             // Assign the quick card URI mapper class to the application frame.
             RootFrame.UriMapper = new QuickCardUriMapper();
-            
+
             // Handle navigation failures
             RootFrame.NavigationFailed += RootFrame_NavigationFailed;
 

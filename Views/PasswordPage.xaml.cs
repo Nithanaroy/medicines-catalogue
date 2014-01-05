@@ -4,6 +4,7 @@ using System.Windows.Input;
 using MedicinesCatalogue.Lib;
 using System.Text.RegularExpressions;
 using AppAgentAdapter.Data;
+using System.Windows;
 
 namespace MedicinesCatalogue.Views
 {
@@ -70,6 +71,21 @@ namespace MedicinesCatalogue.Views
         private void SetUpStage()
         {
             PasswordTextBox.Focus();
+        }
+
+        protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
+        {
+            //var choice = MessageBox.Show("Want to exit Medicines Catalogue?", "Are you sure?", MessageBoxButton.OKCancel);
+            //if (choice == MessageBoxResult.OK)
+            //{
+            if (NavigationService.CanGoBack)
+            {
+                while (NavigationService.RemoveBackEntry() != null)
+                {
+                    NavigationService.RemoveBackEntry();
+                }
+            }
+            //}
         }
     }
 }

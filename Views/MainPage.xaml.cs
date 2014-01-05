@@ -71,6 +71,8 @@ namespace MedicinesCatalogue
                 ((PivotItem)RootPivot.Items[0]).Header = "search res";
 
             MedicineGroupsList.DataContext = App.ViewModel;
+
+            App.TriggerBlinkingEyes(this);
         }
 
         /// <summary>

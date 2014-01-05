@@ -57,6 +57,8 @@ namespace MedicinesCatalogue
                 AlarmsEmpty.Visibility = Visibility.Visible;
             else
                 AlarmsEmpty.Visibility = Visibility.Collapsed;
+
+            App.TriggerBlinkingEyes(this);
         }
 
         /// <summary>

@@ -13,37 +13,9 @@ namespace MedicinesCatalogue.Views
         public BlinkEyesAlertPage()
         {
             InitializeComponent();
-
-            BlinkEyesBrowser.Loaded += new RoutedEventHandler(BlinkEyesBrowser_Loaded);
-        }
-
-        void BlinkEyesBrowser_Loaded(object sender, RoutedEventArgs e)
-        {
             SaveFilesToIsoStore();
-            //SaveHTMLToIsolatedStore();
-
-            //Save3();   
-            //BlinkEyesBrowser.Navigate(new Uri("ImageHTML.html", UriKind.Relative));
-            //BlinkEyesBrowser.Navigate(new Uri("http://www.yahoo.com", UriKind.Absolute));
-            BlinkEyesBrowser.NavigateToString("<html><head><meta name='viewport' content='width=480, user-scalable=yes' /></head><body>HTML Text</body></html>");
-        }
-
-        private void Save3()
-        {
-            StreamResourceInfo strm = Application.GetResourceStream(new Uri("/MedicinesCatalogue;component/Files/ImageHTML.html", UriKind.Relative));
-            StreamReader reader = new StreamReader(strm.Stream);
-            string data = reader.ReadToEnd();
-        }
-
-        private void SaveHTMLToIsolatedStore()
-        {
-            byte[] myByteArray = null;
-            var store = IsolatedStorageFile.GetUserStoreForApplication();
-            using (var stream = new IsolatedStorageFileStream("filename.txt",
-                 FileMode.Create, FileAccess.Write, store))
-            {
-                stream.Write(myByteArray, 0, myByteArray.Length);
-            }
+            //BlinkEyesBrowser.NavigateToString("<html><head><meta name='viewport' content='width=480, user-scalable=yes' /></head><body>HTML Text</body></html>");
+            BlinkEyesBrowser.Navigate(new Uri("imageHTML.html", UriKind.Relative));
         }
 
         private void SaveFilesToIsoStore()
@@ -52,24 +24,27 @@ namespace MedicinesCatalogue.Views
             //or BinaryStream.Dispose below will throw an exception.
 
             Dictionary<string, string> files = new Dictionary<string, string>(){
-                {"imageHTML.html", "../Files/ImageHTML.html"}
+                {"imageHTML.html", "Files/ImageHTML.html"},
+                {"blinkin_eyes.gif", "Images/blinkin_eyes.gif"}
             };
-            string f = "ImageHTML.html", f1 = "../Files/ImageHTML.html";
 
             using (IsolatedStorageFile isoStore = IsolatedStorageFile.GetUserStoreForApplication())
             {
-                if (false == isoStore.FileExists(f))
+                foreach (var f in files)
                 {
-                    //foreach (string f in files)
-                    //{
-
-                    StreamResourceInfo sr = Application.GetResourceStream(new Uri("/MedicinesCatalogue;component/Files/ImageHTML.html", UriKind.Relative));
-                    using (BinaryReader br = new BinaryReader(sr.Stream))
+                    if (false == isoStore.FileExists(f.Key))
                     {
-                        byte[] data = br.ReadBytes((int)sr.Stream.Length);
-                        SaveToIsoStore(f, data);
+                        StreamResourceInfo sr = Application.GetResourceStream(
+                            new Uri("/MedicinesCatalogue;component/" + f.Value, UriKind.Relative));
+                        if (sr == null)
+                            sr = Application.GetResourceStream(new Uri(f.Value, UriKind.Relative));
+
+                        using (BinaryReader br = new BinaryReader(sr.Stream))
+                        {
+                            byte[] data = br.ReadBytes((int)sr.Stream.Length);
+                            SaveToIsoStore(f.Key, data);
+                        }
                     }
-                    //}
                 }
             }
         }

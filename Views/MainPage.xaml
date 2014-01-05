@@ -159,7 +159,7 @@
 
     <Grid x:Name="LayoutRoot">
         <Grid.Background>
-            <ImageBrush ImageSource="/MedicinesCatalogue;component/Images/PageBackground.JPG"
+            <ImageBrush ImageSource="/backgrounds/PageBackground.JPG"
                         Stretch="UniformToFill" />
         </Grid.Background>
         <controls:Pivot x:Name="RootPivot"
